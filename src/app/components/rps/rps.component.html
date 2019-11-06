@@ -1,0 +1,27 @@
+<div class="selection-container">
+  <h2>Choose your destiny:</h2>
+  <div class="card-container">
+    <span class="card"
+          *ngFor="let c of choices"
+          [ngClass]="{selected: myChoice && myChoice.type === c.type}"
+          [title]="c.type"
+          (click)="handleSelection(c)">
+      {{c.icon}}
+    </span>
+  </div>
+</div>
+
+<div class="outcome-container" *ngIf="theirChoice">
+  <h2>Opponent's choice:</h2>
+  <div class="card-container">
+    <span class="card"
+          *ngFor="let c of choices"
+          [ngClass]="{selected: theirChoice && theirChoice.type === c.type}"
+          [title]="c.type">
+      {{c.icon}}
+    </span>
+  </div>
+
+  <h1 class="outcome" [ngClass]="getOutcomeClass()">{{outcome}}</h1>
+  <span class="reset" (click)="reset()">Play again</span>
+</div>
